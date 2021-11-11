@@ -22,6 +22,27 @@ export function EMProvider({ children }) {
   const handleEmailInput = (e) => {
     setEmail(e.target.value);
   };
+  const [showEmailError, setShowEmailError] = useState(false);
+  const checkForEmail = (e) => {
+    function emailIsValid(text){
+      return /\S+@\S+.|S+/.test(text)
+    }
+    if(!emailIsValid(email)) {
+      setShowEmailError(true)
+    }
+    console.log('Checking for Email')
+  }
+  const removeErrorMessage = (e) => {
+    setShowEmailError(false)
+    console.log('Removing Error Message')
+  }
+  const [formCompleted, setFormCompleted] = useState(false)
+  const submittedForm =(e) =>{
+    e.preventDefault()
+    if (showEmailError === false && email.length > 5 ) {
+      setFormCompleted(true)
+    }
+  }
   return (
     <StateContext.Provider
       value={{
@@ -30,6 +51,11 @@ export function EMProvider({ children }) {
         handleEmailInput,
         modalOpenAction,
         modalCloseAction,
+        checkForEmail,
+        showEmailError,
+        removeErrorMessage,
+        submittedForm,
+        formCompleted
       }}
     >
       {children}
