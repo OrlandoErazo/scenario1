@@ -11,7 +11,7 @@ export function useStateContext() {
 export function EMProvider({ children }) {
   const [modalOpen, setModalOpen] = useState(false);
   const modalOpenAction = () => {
-    Cookies.set("modalOpenBefore", true, { expires: 7 });
+    Cookies.set('modalOpenBefore', true , { expires: 7 });
     setModalOpen(true);
   };
   const modalCloseAction = () => {
@@ -41,6 +41,9 @@ export function EMProvider({ children }) {
     e.preventDefault()
     if (showEmailError === false && email.length > 5 ) {
       setFormCompleted(true)
+      setTimeout(() => {
+        modalCloseAction()
+      }, 3000)
     }
   }
   return (

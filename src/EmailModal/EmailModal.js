@@ -7,11 +7,11 @@ const EmailModal = () => {
   const newState = useStateContext();
   useEffect(() => {
     document.body.addEventListener("mouseleave", () => {
-      // if (Cookies.get('modalOpenBefore') !== 'true') {
+      if (Cookies.get('modalOpenBefore') !== true) {
 
-      //   newState.modalOpenAction()
-      // }
-      newState.modalOpenAction();
+        newState.modalOpenAction()
+      }
+     
     });
   }, [newState]);
 
@@ -38,7 +38,7 @@ const EmailModal = () => {
           <p className="email-modal__message">
             Join our community of more than{" "}
             <span className="email-modal__highlight-text">300,000 women</span>{" "}
-            who love fashion and receive
+            who love fashion to receive
             <span className="email-modal__highlight-text">
               {" "}
               notifications, discounts, and our #1 newsletter.
@@ -69,7 +69,7 @@ const EmailModal = () => {
         <div className="email-modal__side-img">
           <img src="img\pexels-photo-4462782.jpeg" alt="" />
         </div>
-        <div className={`email-thank ${newState.forCompleted ? 'email-form--success': ''}`}>
+        <div className={`email-thank ${newState.formCompleted ? 'email-thank--success': ''}`}>
           <div className="email-thank__title">Thank You.</div>
           <p className="email-thank__message">
             Check your email. We sent you some instructions... Welcome to the
